@@ -1818,29 +1818,9 @@ Envshake.time = 30
 Getpower = 0,0
 numhits = 3
 
-;[State 200, Spark CVS]
-;type = Explod
-;trigger1 = Movehit = 1
-;anim = 7010
-;ID = 7001
-;postype = P2
-;pos = -10+random%20,-5-random%30
-;facing = -1
-;sprpriority = 2
-;supermove = 1
-;removetime = -2
-;bindtime = 1
-;ownpal = 1
-;scale = .3*Helper(999999),Fvar(16),.3*Helper(999999),Fvar(16)
-;removeongethit = 1
-;ontop = 1
-;supermovetime 	= 999
-;ignorehitpause  = 1
-;persistent = 7
-
 [State 0, Helper]
 type = Helper
-triggerall = numhelper(801) < 4
+triggerall = numhelper(801) < 5
 trigger1 = Movehit = 1
 helpertype = normal ;player
 name = "Hitspark"
