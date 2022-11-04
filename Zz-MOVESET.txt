@@ -1,0 +1,72 @@
+
+A - Combo 1
+
+B - Combo 2
+
+C - Reigan
+
+S - Power Charge
+
+COMBOS:
+
+Base Form:
+
+a,a,a - Combo 1
+
+b,b,b - Combo 2
+
+a,b - Air
+
+a,a,b,b,b,a,b - Full
+
+Mazoku Form:
+
+a,a,a - Light
+
+b,b,b - Heavy
+
+a,b,b - Air
+
+a,a,b,b,Jump,a,b,b - Full
+
+SPECIALS:
+
+Base Form:
+
+D,DF,F,a - Reikogan
+
+D,DB,B,a - Where are you looking?
+
+D,DF,F,b - Spirit Rush
+
+D,DB,B,b - Soul Surge
+
+D,DF,F,c - Mega Spirit Gun
+
+D,DB,B,c - Shotgun
+
+D+a - Mazoku Form
+
+Mazoku Form:
+
+D,DF,F,a - Majin Smash
+
+D,DB,B,a - Makai Barrier
+
+D,DF,F,b - Violent Rush
+
+D,DB,B,b - Primal Rampage
+
+D,DF,F,c - Mega Demon Gun
+
+D,DB,B,c - Demon Dash
+
+SUPER: 
+
+Base Form:
+
+x - Final Spirit Gun
+
+Super Saiyan Blue:
+
+x - Mazoku Onslaught

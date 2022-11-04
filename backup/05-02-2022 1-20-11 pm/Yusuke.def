@@ -1,0 +1,25 @@
+[Info]
+name ="Yusuke"
+displayname ="Yusuke Urameshi"
+versiondate =13/02/2022
+mugenversion =1.0
+author ="Mikel8888" ;Actually made by Akashi MUGEN, edited by Shiruzato/MYTHOS, edited by Meiloorun
+pal.defaults =1
+
+[Files]
+cmd=Yusuke.cmd
+cns=Yusuke.cns
+st=Yusuke.cns
+stcommon=common1.cns
+sprite=Yusuke.sff
+anim=Yusuke.air
+sound=Yusuke.snd
+pal1=Yusuke.act
+st1=IA.cns
+st2=Specials.cns
+st3=Supers.cns
+st4=Mazoku.cns
+
+[Arcade]
+intro.storyboard=
+ending.storyboard=
