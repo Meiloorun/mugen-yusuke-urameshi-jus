@@ -937,6 +937,13 @@ size.xscale=.045+VAR(10)/500
 size.yscale=.045+VAR(10)/500
 ignorehitpause=1
 
+[State 0, ChangeState]
+type = ChangeState
+Triggerall = animelem = 3 || animelem = 5
+trigger1 = movecontact = 0
+value = 0
+ctrl = 1
+
 [State 200, End]
 type = ChangeState
 trigger1 = animtime = 0
