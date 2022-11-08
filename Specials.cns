@@ -968,6 +968,24 @@ trigger1 = time = 25
 value = S5,4
 volume = 50
 
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 15
+value = S0,29
+volume = 999
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 15
+value = S0,29
+volume = 999
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 15
+value = S0,29
+volume = 999
+
 [State 0, Viento]
 type = Explod
 trigger1 = time = 25
@@ -1931,11 +1949,13 @@ type = PlaySnd
 trigger1 = time = 0
 value = S0,26
 volume = 999
+
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 = time = 0
 value = S0,26
 volume = 999
+
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 = time = 0
