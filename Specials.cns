@@ -846,9 +846,33 @@ ownpal=1
 
 [State 200, 1]
 type = HitDef
-trigger1 = animelem = 3 || animelem = 5
+trigger1 = animelem = 3
 attr = S, SA
 animtype  = Heavy
+damage    = 7,3
+Hitflag = M
+guardflag = M
+pausetime = 1,31
+sparkno = -1
+guard.sparkno = -1
+sparkxy = -8,-25
+hitsound   = S1,34
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = cond(random<500,-8,8),0
+air.velocity = cond(random<500,-8,8),0
+Fall = 0
+Envshake.time = 30
+Getpower = 0,0
+numhits = 4
+
+[State 200, 1]
+type = HitDef
+trigger1 = animelem = 5
+attr = S, SA
+animtype  = Light
 damage    = 7,3
 Hitflag = M
 guardflag = M
