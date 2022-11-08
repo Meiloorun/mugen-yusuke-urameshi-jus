@@ -589,7 +589,6 @@ anim = 1200
 poweradd = -1000
 sprpriority = 2
 
-
 [State 3000, SuperPause]
 type = SuperPause
 trigger1 = time = 0
@@ -861,8 +860,8 @@ guardsound = S4,1
 ground.type = High
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = cond(random<500,-8,8),0
-air.velocity = cond(random<500,-8,8),0
+ground.velocity = 0,0
+air.velocity = 0,0
 Fall = 0
 Envshake.time = 30
 Getpower = 0,0
@@ -885,8 +884,8 @@ guardsound = S4,1
 ground.type = High
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = cond(random<500,-8,8),0
-air.velocity = cond(random<500,-8,8),0
+ground.velocity = 0,0
+air.velocity = 0,0
 Fall = 0
 Envshake.time = 30
 Getpower = 0,0
@@ -936,13 +935,6 @@ ownpal=1
 size.xscale=.045+VAR(10)/500
 size.yscale=.045+VAR(10)/500
 ignorehitpause=1
-
-[State 0, ChangeState]
-type = ChangeState
-Triggerall = animelem = 3 || animelem = 5
-trigger1 = movecontact = 0
-value = 0
-ctrl = 1
 
 [State 200, End]
 type = ChangeState
