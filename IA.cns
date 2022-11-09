@@ -618,3 +618,29 @@ postype = p2
 facing = 1
 keyctrl = 0
 ownpal = 1
+
+[State 0, P2 - Falling Straight Down]
+type = Helper
+triggerall = numhelper(8462) = 0
+trigger1 = p2stateno = 8460
+name = "P2 - Falling Straight Down"
+ID = 8462
+stateno = 8462
+pos = 0,0
+postype = p2
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 0, P2 - Falling Straight Down - Back Up]
+type = Helper
+triggerall = numhelper(8463) = 0
+trigger1 = p2stateno = 8461
+name = "P2 - Falling Straight Down - Back Up"
+ID = 8463
+stateno = 8463
+pos = 0,0
+postype = p2
+facing = 1
+keyctrl = 0
+ownpal = 1

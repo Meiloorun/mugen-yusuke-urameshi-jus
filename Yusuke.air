@@ -2323,7 +2323,7 @@ Clsn2: 5
 1056,8, 0,0, 2,, A
 1056,9, 0,0, 2,, A
 
-;0
+; Ray Gun Big Fire
 [Begin Action 1120]
 Clsn2: 6
   Clsn2[0] = -14, -3, -9, 2
@@ -2494,7 +2494,7 @@ Clsn2: 4
   Clsn2[3] = -17, -16, -1, 0
 0,167, 0,0, 10
 
-; Remate
+; Blast Off
 [Begin Action 1203]
 Clsn2: 4
   Clsn2[0] = -10, -48, 4, -30
@@ -2727,7 +2727,7 @@ Clsn2: 1
 0,13, 0,0, 1
 0,5, 0,0, 5
 
-; FX Pantalla
+; FX Screen
 [Begin Action 1530]
 1052,0, 0,0, 5,, A
 1052,1, 0,0, 5,, A

@@ -744,10 +744,11 @@ triggerall = command = "a"
 Triggerall = statetype = A
 trigger1 = ctrl
 ;---------------------------------------------------------------------------
-; B Aire
+; Down + B Air
 [State -1, B Aire]
 type = ChangeState
 value = 610+var(11)
+triggerall = command = "holddown"
 triggerall = command = "b"
 Triggerall = statetype = A
 trigger1 = ctrl

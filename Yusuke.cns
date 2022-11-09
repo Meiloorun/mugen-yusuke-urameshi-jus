@@ -3700,6 +3700,294 @@ type = selfstate
 trigger1 = time = 1
 value = 5050
 ;-------------------------------------------------------------------------------
+; P2 - Bounce off Ground
+[Statedef 8460]
+type    = S
+movetype= H
+physics = N
+juggle  = 1
+ctrl = 0
+sprpriority = 1
+Facep2 = 1
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+ignorehitpause = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+y = 10
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+trigger1 = time = 0
+value = 5100+Cond(authorname = "Mikel8888"||authorname = "Rivelio"||authorname = "Knightmare"||authorname = "InSeph",var(10),0)
+elem = 1
+
+[State 200, End]
+type = SelfState
+trigger1 = pos y > 0
+value = 8461
+;-------------------------------------------------------------------------------
+; P2 - Bounce off Ground - Back Up
+[Statedef 8461]
+type    = S
+movetype= H
+physics = A
+juggle  = 1
+ctrl = 0
+sprpriority = 1
+Facep2 = 1
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+ignorehitpause = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+y = -10
+
+[State 0, LifeAdd]
+type = LifeAdd
+trigger1 = time = 0
+value = -20
+kill = 1
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+trigger1 = time = 0
+value = 5060+Cond(authorname = "Mikel8888"||authorname = "Rivelio"||authorname = "Knightmare"||authorname = "InSeph",var(10),0)
+elem = 1
+
+[State 200, End]
+type = SelfState
+triggerall = time > 5
+trigger1 = pos y > 0
+value = 5201
+;-------------------------------------------------------------------------------
+; P2 - Bounce off Ground FX
+[Statedef 8462]
+type    = S
+movetype= I
+physics = N
+ctrl = 0
+anim = 9999
+
+[State 2001, PosAdd]
+type = PosAdd
+trigger1 = 1
+x = p2dist x
+y = p2dist y
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S100,0
+volume = 50
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S100,0
+volume = 50
+
+[State 0, Shockwave]
+type = Explod
+triggerall = time >= 0
+trigger1 = timemod = 5,0
+trigger2 = time = 0
+anim = 431
+ID = 431
+pos = 0,-25*Helper(999999),Fvar(16)
+postype = p1
+facing = -1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .1*Helper(999999),Fvar(16),.1*Helper(999999),Fvar(16)
+vel = -.5,-.5
+sprpriority = 1
+ontop = 1
+ownpal = 1
+removeongethit = 1
+angle = 90
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 0
+value = S100,0
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 0
+value = S100,0
+
+[State 0, Speed FX]
+type = Explod
+triggerall = time = [0,15]
+trigger1 = timemod = 2,0
+anim = 581
+id = 580
+pos = 0,-15-random%35
+postype = p2
+facing = -1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .4,.15
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 1
+ignorehitpause = 1
+Trans = sub
+Angle = 0
+pausemovetime = 99999
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = enemy,stateno != 8460
+id = 580
+
+[State 200, End]
+type = Destroyself
+trigger1 = enemy,stateno != 8460
+;-------------------------------------------------------------------------------
+; P2 - Bounce off Ground - Back Up FX
+[Statedef 8463]
+type    = S
+movetype= I
+physics = N
+ctrl = 0
+anim = 9999
+
+[State 2001, PosAdd]
+type = PosAdd
+trigger1 = 1
+x = p2dist x
+y = p2dist y
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S100,1
+volume = 50
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S100,1
+volume = 50
+
+[State 0, Shockwave]
+type = Explod
+triggerall = time <= 24
+triggerall = time >= 0
+trigger1 = timemod = 10,0
+trigger2 = time = 0
+anim = 431
+ID = 580
+pos = 0,5*Helper(999999),Fvar(16)
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .1*Helper(999999),Fvar(16),.1*Helper(999999),Fvar(16)
+vel = -.5,-.5
+sprpriority = 1
+ontop = 1
+ownpal = 1
+removeongethit = 1
+angle = 90
+
+[State 0, Speed FX]
+type = Explod
+triggerall = time <= 24
+triggerall = time = [0,15]
+trigger1 = timemod = 2,0
+anim = 581
+id = 580
+pos = 0,30-random%35
+postype = p2
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .4,.15
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 1
+ignorehitpause = 1
+Trans = sub
+Angle = 0
+pausemovetime = 99999
+
+[State 0,Wall Impact]
+type = Explod
+trigger1 = time = 0
+anim = 8260
+ID = 8260
+postype = P1
+pos = 0,2
+facing = -1
+sprpriority = 2
+removetime = -2
+bindtime = 1
+ownpal = 1
+scale = .3,.3
+angle = 0
+removeongethit = 1
+ontop = 1
+ignorehitpause = 1
+supermovetime 	= 999
+pausemovetime = 9999
+
+[State 0, Wall Dust]
+type = Explod
+trigger1 = time = 0
+anim = 8250
+ID = 8250
+pos = 75,0
+postype = p1
+vel = -2,-2
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .5,.5
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 0
+ignorehitpause = 0
+
+[State 0, Crashed Ground]
+type = Explod
+trigger1 = time = 0
+anim = 7025
+ID = 7025
+pos = 0,20
+postype = p1
+scale = 0.5,0.5
+sprpriority = -9
+ontop = 0
+ownpal = 1
+removetime = -2
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = enemy,stateno != 8461
+id = 580
+
+[State 200, End]
+type = Destroyself
+trigger1 = enemy,stateno != 8461
+;-------------------------------------------------------------------------------
 ;Rings
 [Statedef 8309]
 type    = S
@@ -4572,6 +4860,17 @@ trigger1 = time = 0
 value = S0,14
 volume = 999
 
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 3
+y = -4
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 24
+x = 1
+
 [State 200, 1]
 type = HitDef
 trigger1 = animelem = 2||animelem = 3||animelem = 4||animelem = 5||animelem = 6||animelem = 7
@@ -4687,6 +4986,17 @@ trigger1 = time = 0
 value = S0,14
 volume = 999
 
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 5
+y = -2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 8
+x = 3
+
 [State 200, 1]
 type = HitDef
 triggerall = !movecontact
@@ -4733,7 +5043,7 @@ trigger1 = AnimTime = 0
 value = 50
 ctrl = 1
 ;===============================================================================
-; B Air:
+; Down + B Air:
 ;-------------------------------------------------------------------------------
 [Statedef 610]
 type    = A
@@ -4754,8 +5064,8 @@ volume = 999
 [State 0, VelSet]
 type = VelSet
 trigger1 = movecontact = 1
-x = -2
-y = -4
+x = 0
+y = -5
 
 [State 200, 1]
 type = HitDef
@@ -4778,7 +5088,7 @@ ground.velocity = -2,6
 air.velocity = -2,6
 Fall = 1
 Envshake.time = 10
-p2stateno = 8455
+p2stateno = 8460
 
 [State 0, Charge]
 type = Helper
@@ -4858,6 +5168,13 @@ postype=p1
 facing=1
 ownpal=1
 Persistent=0
+
+[State 200, End]
+type = ChangeState
+Triggerall = movecontact && time > 11
+trigger1 = ailevel = 0 && command = "b"
+trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
+value = 600
 
 [State 200, End]
 type = ChangeState
