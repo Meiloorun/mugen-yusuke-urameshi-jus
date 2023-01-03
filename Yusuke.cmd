@@ -83,7 +83,20 @@ name = "SPECIAL 12"
 command = z
 time = 30
 
+;-| Defaults |-----------------------------------------------------------
+
+[Command]
+name = "Eat These!"
+command = ~F, B, a
+time = 15
+
+[Command]
+name = "Get Lost"
+command = $DF, a
+time = 10
+
 [Defaults]
+
 
 ;-| Double Tap |-----------------------------------------------------------
 [Command]
@@ -245,6 +258,7 @@ time = 1
 name = "up_c"
 command = /$U,c
 time = 1
+
 ;-| Single Button |---------------------------------------------------------
 [Command]
 name = "a"
@@ -678,8 +692,30 @@ Triggerall = statetype != A
 trigger1 = ctrl
 trigger2 = movecontact
 ;===========================================================================
-;--------------------------------Ataques Normales---------------------------
+;--------------------------------Basic Attacks---------------------------
 ;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+; Eat These!
+[State -1, Eat These!]
+type = ChangeState
+value = 220
+triggerall = command = "Eat These!"
+Triggerall = statetype != A
+trigger1 = ctrl
+;-----------------------------------------------------------------------------
+; Get Lost
+[State -1, Get Away!]
+type = ChangeState
+value = 230
+triggerall = command = "Get Lost"
+Triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = movecontact && stateno = 300
+trigger2 = movecontact && stateno = 310
+trigger2 = movecontact && stateno = 320
+trigger2 = movecontact && stateno = 330
+trigger2 = movecontact && stateno = 340
+;-----------------------------------------------------------------------------
 ; Mazoku
 [State -1, SS1]
 type = ChangeState
@@ -688,6 +724,15 @@ triggerall = var(2) = 0
 Triggerall = var(3) = 0
 value = 701
 triggerall = command = "x"
+Triggerall = statetype != A
+trigger1 = ctrl
+;---------------------------------------------------------------------------
+; Down + B
+[State -1, Down + B]
+type = ChangeState
+value = 360
+triggerall = command = "holddown"
+triggerall = command = "b"
 Triggerall = statetype != A
 trigger1 = ctrl
 ;---------------------------------------------------------------------------
@@ -716,15 +761,6 @@ value = 400
 triggerall = command = "c"
 Triggerall = statetype != A
 triggerall = numhelper(450) = 0
-trigger1 = ctrl
-;---------------------------------------------------------------------------
-; Down + B
-[State -1, Down + B]
-type = ChangeState
-value = 360
-triggerall = command = "holddown"
-triggerall = command = "b"
-Triggerall = statetype != A
 trigger1 = ctrl
 ;---------------------------------------------------------------------------
 ; Power Charge

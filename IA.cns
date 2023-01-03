@@ -351,11 +351,10 @@ pausemovetime = 999999
 ;-------------------------------------------------------------------------------
 [State 0, Helper]
 type = Helper
-triggerall = p2movetype = H
 triggerall = numhelper(460) = 0
 trigger1 = p2stateno = 456
 helpertype = normal
-name = "Pared Rota"
+name = "Wall Hit"
 ID = 460
 stateno = 460
 pos = 0,-30
@@ -363,6 +362,7 @@ postype = p2
 facing = 1
 keyctrl = 0
 ownpal = 1
+
 [State -3, VarSet - Majin]
 type = VarSet
 trigger1 = numhelper(760) = 1

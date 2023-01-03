@@ -1,22 +1,3 @@
-;===================================================================================
-;---------------- Constantes y Ataques normales--------------------------------------------
-;===================================================================================
-
-;Var List:
-
-; - Var(2) = SS1 || SS2 || SS3
-; - Var(3) = Ren
-; - Var(7) = NO TOCAR
-; - Var(8) = NO TOCAR
-; - Var(9) = IA
-; - Var(10) = Apariencia Transformaciones
-; - Var(11) = Golpeado Transformaciones
-; - Var(12) = Oscurecer Pantalla
-; - Var(13) = Bombas Reset
-; - Var(14) = Specials Transformaciones
-; - Var(15) = Supers Transformaciones
-; - FVar(16) = ESCALA
-
 [Data]
 life = 1000
 power = 3000
@@ -156,7 +137,7 @@ type = ChangeState
 trigger1 = Time = 0
 value = 191
 ;===============================================================================
-; Introduction:
+; Normal Intro:
 ;-------------------------------------------------------------------------------
 [Statedef 191]
 type = S
@@ -192,7 +173,7 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ;-------------------------------------------------------------------------------
-; VS Goku:
+; Intro VS Goku:
 [Statedef 192]
 type = S
 ctrl = 0
@@ -280,18 +261,21 @@ attr = S, NA
 animtype  = Light
 damage    = 10
 guardflag = MA
-pausetime = 10,10
+pausetime = 10,8
 sparkno = -1
 guard.sparkno = -1
 sparkxy = -8,-25
 hitsound   = S1,4
 guardsound = S4,1
 ground.type = High
-ground.slidetime = 12
-ground.hittime  = 15
+ground.slidetime = 8
+ground.hittime  = 10
+guard.hittime = 3
 ground.velocity = -7
+guard.velocity = -2
 air.velocity = -2,-1
 envshake.time = 10
+envshake.ampl = -4
 Fall = 0
 
 [State 0, Wind FX]
@@ -313,24 +297,25 @@ ownpal = 1
 removeongethit = 1
 angle = -15
 
-[State 0, Helper]
-type = Helper
-triggerall = Numhelper(801) = 0
+[State 200, Spark CVS]
+type = Explod
 trigger1 = Movehit = 1
-helpertype = normal ;player
-name = "Hitspark"
-ID = 801
-stateno = 801
-pos = 0,-30
-postype = p2    ;p2,front,back,left,right
-facing = 1
-keyctrl = 0
+anim = 7010
+ID = 7002
+postype = P1
+pos = 30,-30
+facing = -1
+sprpriority = 2
+supermove = 1
+removetime = -2
+bindtime = 1
 ownpal = 1
-supermovetime = 999
-pausemovetime = 0
-ignorehitpause = 1
-size.xscale = 0.12
-size.yscale = 0.12
+scale = 0.075,0.075
+removeongethit = 1
+ontop = 1
+supermovetime 	= 999
+ignorehitpause  = 1
+persistent = 0
 
 [State 200, End]
 type = ChangeState
@@ -339,13 +324,6 @@ trigger1 = ailevel = 0 && command = "a"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 210
 
-[State 200, End]
-type = ChangeState
-Triggerall = movecontact
-trigger1 = ailevel = 0 && command != "holddown"
-trigger1 = ailevel = 0 && command = "b"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 300
 
 [State 200, End]
 type = ChangeState
@@ -423,11 +401,13 @@ sparkxy = -8,-25
 hitsound   = S1,32
 guardsound = S4,1
 ground.type = High
-ground.slidetime = 12
-ground.hittime  = 15
+ground.slidetime = 7
+ground.hittime  = 10
+guard.hittime = 4
 ground.velocity = -6
 air.velocity = -2,-1
 envshake.time = 10
+envshake.freq = 8
 Fall = 0
 
 [State 0, Helper]
@@ -449,12 +429,7 @@ ignorehitpause = 1
 size.xscale = 0.12
 size.yscale = 0.12
 
-[State 200, End]
-type = ChangeState
-Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "a"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 220
+
 
 [State 200, End]
 type = ChangeState
@@ -478,7 +453,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 ;-------------------------------------------------------------------------------
-; A - 3
+; Eat These!
 [Statedef 220]
 type    = S
 movetype= A
@@ -498,23 +473,17 @@ x = 8
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 = time=0
-value = S0,15
+value = S0,31
 volume = 999
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 = time=0
-value = S0,15
-volume = 999
-
-[State 0, PlaySnd]
-type = PlaySnd
-trigger1 = animelem=10
-value = S0,12
+value = S0,31
 volume = 999
 [State 0, PlaySnd]
 type = PlaySnd
-trigger1 = animelem=10
-value = S0,12
+trigger1 = time=0
+value = S0,31
 volume = 999
 
 [State 0, VelSet]
@@ -533,7 +502,7 @@ type = HitDef
 trigger1 = animelem = 4||animelem = 5||animelem = 6||animelem = 7||animelem = 8||animelem = 9||animelem = 10||animelem = 11
 attr = S, NA
 animtype  = Light
-damage    = 8
+damage    = 15
 guardflag = MA
 pausetime = 6,5
 sparkno = -1
@@ -543,11 +512,53 @@ hitsound   = S1,30
 guardsound = S4,1
 ground.type = High
 ground.slidetime = 12
-ground.hittime  = 20
+ground.hittime  = 23
+guard.hittime = 1
 ground.velocity = -1,0
 air.velocity = -1,-1
 envshake.time = 10
+envshake.ampl = -4
 Fall = 0
+
+[State 0, Explod]
+type = Explod
+triggerall = time < 29 && time > 14
+trigger1 = timemod = 2,0
+anim = 7022
+ID = 7022
+pos = -5,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = .5*Helper(999999),Fvar(16),.5*Helper(999999),Fvar(16)
+sprpriority = 1
+ontop = 0
+ownpal = 1
+removeongethit = 1
+
+[State 0, Shadow FX]
+type = Explod
+triggerall = time < 29 && time > 14
+Trigger1 = TimeMod = 5,0
+anim = 580
+ID = 580
+pos = 27,-27
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+scale = .1,.75
+sprpriority = 2
+ontop = 1
+ownpal = 1
+removeongethit = 1
+ignorehitpause = 1
+Vel = 0,0
+angle = 90
+
 
 [State 0, Helper]
 type = Helper
@@ -595,7 +606,7 @@ helpertype = normal ;player
 name = "Hitspark"
 ID = 803
 stateno = 801
-pos = 0,-30
+pos = 0,-40
 postype = p2    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
@@ -605,14 +616,6 @@ pausemovetime = 0
 ignorehitpause = 1
 size.xscale = 0.12
 size.yscale = 0.12
-
-[State 200, End]
-type = ChangeState
-triggerall = time > 25
-Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "a"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 230
 
 [State 200, End]
 type = ChangeState
@@ -644,7 +647,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 ;-------------------------------------------------------------------------------
-; A - 4
+; Get Lost
 [Statedef 230]
 type    = S
 movetype= A
@@ -669,12 +672,12 @@ x = 5
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 = time = 0
-value = S0,8
+value = S0,33
 volume = 999
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 = time = 0
-value = S0,8
+value = S0,33
 volume = 999
 
 [State 0, PlaySnd]
@@ -689,7 +692,7 @@ triggerall = !movecontact
 trigger1 = 1
 attr = S, NA
 animtype  = Back
-damage    = 10
+damage    = 25
 guardflag = MA
 pausetime = 10,10
 sparkno = -1
@@ -700,29 +703,91 @@ guardsound = S4,1
 ground.type = High
 ground.slidetime = 10
 ground.hittime  = 30
+guard.hittime = 2
 ground.velocity = -15, 2
 air.velocity = -15,-6
 envshake.time = 16
 Fall = 1
 
-[State 0, Helper]
+
+[State 0, Charge]
 type = Helper
-triggerall = Numhelper(801) = 0
-trigger1 = Movehit = 1
-helpertype = normal ;player
-name = "Hitspark"
-ID = 801
-stateno = 801
-pos = -10+random%20,-10-random%40
-postype = p2    ;p2,front,back,left,right
+trigger1 = animelem = 3
+helpertype = normal
+name = "Charge"
+ID = 231
+stateno = 231
+pos = 0,0
+postype = p1
 facing = 1
 keyctrl = 0
 ownpal = 1
-supermovetime = 999
-pausemovetime = 0
+Supermovetime = 999
+size.xscale = .25*Helper(999999),Fvar(16)
+size.yscale = .25*Helper(999999),Fvar(16)
+
+[State 0,Helper]
+type = Helper
+trigger1 = movehit = 1
+helpertype = normal
+ID = 371
+name = "Ray-Hitspark"
+stateno = 803
+pos = 35,-5
+postype = P1
+facing = Cond(Random<500,1,-1)
+ownpal = 1
+size.xscale = 0.075*1.5
+size.yscale = 0.075*1.5
 ignorehitpause = 1
-size.xscale = 0.12
-size.yscale = 0.12
+persistent = 0
+
+[State 0,Helper]
+type = Helper
+trigger1 = movecontact = 1
+helpertype = normal
+ID = 371
+name = "Ray-Hitspark"
+stateno = 804
+pos = 35,-5
+postype = P1
+facing = Cond(Random<500,1,-1)
+ownpal = 1
+size.xscale = .25+var(10)/500
+size.yscale = .25+var(10)/500
+ignorehitpause = 1
+persistent = 0
+
+[State 0,Helper]
+type = Helper
+trigger1 = movecontact = 1
+helpertype = normal
+ID = 073
+name = "Ray-Hitspark"
+stateno = 803
+pos = 35,-5
+postype = P1
+facing = Cond(Random<500,1,-1)
+ownpal = 1
+size.xscale = .125+var(10)/500
+size.yscale = .125+var(10)/500
+ignorehitpause = 1
+persistent = 0
+
+[State 0,Helper]
+type = Helper
+trigger1 = animelem = 5
+helpertype = normal
+name = "Reikodan - FX"
+ID = 241
+stateno = 6135
+pos = 30,-5
+Size.XScale = .2
+Size.YScale = .2
+postype = p1
+facing = 1
+ownpal = 1
+Persistent = 0
 
 [State 200, End]
 type = ChangeState
@@ -737,6 +802,267 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
+
+;-------------------------------------------------------------------------------
+; raygun charge
+[Statedef 231]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 551+root,var(11)
+sprpriority = 9
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time < 30
+scale = .1+time*.015,.1+time*.015
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time > 30
+scale = 0.55,0.55
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = timemod = 30, 0
+value = S5,36
+volume = 999
+channel = 5
+
+[State 0, Helper]
+type = Helper
+triggerall = numhelper(232) = 0
+trigger1 = timemod = 25, 0
+helpertype = normal ;player
+name = "Charge Swirl"
+ID = 232
+stateno = 232
+pos = 0,0
+postype = p1    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+supermovetime = 999999999
+pausemovetime = 999999999
+
+[State 0, BindToRoot]
+type = BindToRoot
+triggerall = root,time>=2 && root,time < 10
+trigger1 = 1
+pos = -22,-34
+
+[State 0, BindToRoot]
+type = BindToRoot
+triggerall = root,time >= 10 && root,time < 11
+trigger1 = 1
+pos = 23,-24
+
+[State 0, BindToRoot]
+type = BindToRoot
+triggerall = root,time >= 11 && root,time < 12
+trigger1 = 1
+pos = 22,-6
+
+[State 0, BindToRoot]
+type = BindToRoot
+triggerall = root,time >= 12 && root,time < 15
+trigger1 = 1
+pos = 23,-24
+
+[State 0, BindToRoot]
+type = BindToRoot
+triggerall = root,time >= 15 && root,time < 20
+trigger1 = 1
+pos = 7,-20
+
+[State 9001:VarRandom]
+type=VarRandom
+trigger1=1
+v=0
+range=-65,65
+
+[State 9001:VarRandom]
+type=VarRandom
+trigger1=1
+v=1
+range=-65 ,65
+
+[State 9001:Helper]
+type=Helper
+trigger1=((GameTime%2)=0)
+helpertype=Normal
+name="Charge Balls"
+id=233
+stateno=233
+pos=var(0),var(1)
+postype=p1
+facing=1
+keyctrl=0
+ownpal=1
+supermovetime=9999
+pausemovetime=9999
+ignorehitpause=1
+
+[State 0, StopSnd]
+type = StopSnd
+trigger1 = root,animelem = 8
+trigger2 = root,stateno != 230
+trigger3 = root,movetype = h
+channel = 5
+
+[State 200, End]
+type = Destroyself
+trigger1 = root,animelem = 8
+trigger2 = root,stateno != 230
+trigger3 = root,movetype = h
+;-------------------------------------------------------------------------------
+; raygun charge swirl
+[Statedef 232]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 470
+sprpriority = 9
+
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = 0,0
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+scale = 0.55,0.55
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 200, End]
+type = Destroyself
+trigger1 = root,animelem = 8
+trigger2 = root,stateno != 230
+trigger3 = root,movetype = h
+;---------------------------------------------------------------
+;Charge Balls
+[Statedef 233]
+type = S
+movetype = I
+physics = S
+juggle = 4
+ctrl = 0
+anim = 551
+sprpriority = 9
+
+[State 0,VarSet]
+type = VarSet
+trigger1 = !Time
+fv = 2
+value = (-0.02+0.02*(Random%2))
+
+[State 0,AngleDraw]
+type = AngleDraw
+trigger1 = 1
+scale = 0.1+Fvar(2),0.1+Fvar(2)
+
+[State 0,VelSet]
+type = VelSet
+trigger1 = 1
+x = (ParentDist X-0)/15.0
+y = (Parentdist y-0)/15.0
+
+[State 0,AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = NoShadow
+
+[State 0,DestroySelf]
+type = Destroyself
+triggerall = cond(SelfAnimExist(2),var(46):=1,1)
+trigger1 = time >= 20
+trigger2 = root,animelem = 8
+trigger3 = root,stateno != 230
+trigger4 = root,movetype = h
+;----------------------------------------------------------------------
+;Reikodan - FX
+[Statedef 614]
+type=A
+movetype=I
+physics=N
+anim=385
+sprpriority=3
+velset=1,0
+
+[State 0,PalFXWiz]
+type=PalFX
+trigger1=1
+time=99999
+add=-128,-25,0
+mul=512,512,512
+color=64
+
+[State 0, BindToRoot]
+type = BindToRoot
+trigger1 = time >= 0
+pos = 30,-5
+
+[State 0,VarAdd]
+type=VarAdd
+trigger1=Time=[0,3]
+fv=5
+value=.125
+
+[State 0,VarAdd]
+type=VarAdd
+trigger1=Time>=4
+fv=5
+value=-.25
+
+[State 0,AngleDraw]
+type=AngleDraw
+trigger1=1
+scale=1,1+FVar(5)
+value = -48
+ignorehitpause=1
+
+[State 0,Trans]
+type=Trans
+trigger1=AnimElemTime(4)>0
+trans=AddAlpha
+Alpha=256-(Time*20),256
+
+[State 0,AssertSpecial]
+type=AssertSpecial
+trigger1=1
+flag=NoShadow
+ignorehitpause=0
+
+[State 200,End]
+type=Destroyself
+trigger1=animtime = 0
+
 ;===============================================================================
 ; B:
 ;-------------------------------------------------------------------------------
@@ -790,6 +1116,7 @@ guardsound = S4,1
 ground.type = High
 ground.slidetime = 12
 ground.hittime  = 15
+guard.hittime = 12
 ground.velocity = -8
 air.velocity = -2,-1
 Fall = 0
@@ -817,25 +1144,10 @@ size.yscale = 0.12
 [State 200, End]
 type = ChangeState
 Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "a"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 230
-
-[State 200, End]
-type = ChangeState
-Triggerall = movecontact
 trigger1 = ailevel = 0 && command != "holddown"
 trigger1 = ailevel = 0 && command = "b"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 310
-
-[State 200, End]
-type = ChangeState
-Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "holddown"
-trigger1 = ailevel = 0 && command = "b"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 360
 
 [State 200, End]
 type = ChangeState
@@ -898,7 +1210,8 @@ hitsound   = S1,35
 guardsound = S4,1
 ground.type = High
 ground.slidetime = 12
-ground.hittime  = 15
+ground.hittime  = 20
+guard.hittime = 13
 ground.velocity = -8
 air.velocity = -2,-1
 Fall = 0
@@ -926,25 +1239,10 @@ size.yscale = 0.12
 [State 200, End]
 type = ChangeState
 Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "a"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 230
-
-[State 200, End]
-type = ChangeState
-Triggerall = movecontact
 trigger1 = ailevel = 0 && command != "holddown"
 trigger1 = ailevel = 0 && command = "b"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 320
-
-[State 200, End]
-type = ChangeState
-Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "holddown"
-trigger1 = ailevel = 0 && command = "b"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 360
 
 [State 200, End]
 type = ChangeState
@@ -1005,7 +1303,8 @@ hitsound   = S1,41
 guardsound = S4,1
 ground.type = High
 ground.slidetime = 12
-ground.hittime  = 15
+ground.hittime = 11
+guard.hittime = 4
 ground.velocity = -8
 air.velocity = -2,-8
 Fall = 0
@@ -1029,13 +1328,6 @@ pausemovetime = 0
 ignorehitpause = 1
 size.xscale = 0.12
 size.yscale = 0.12
-
-[State 200, End]
-type = ChangeState
-Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "a"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 230
 
 [State 200, End]
 type = ChangeState
@@ -1117,7 +1409,8 @@ hitsound   = S1,42
 guardsound = S4,1
 ground.type = High
 ground.slidetime = 12
-ground.hittime  = 15
+ground.hittime = 19
+guard.hittime = 3
 ground.velocity = -8
 air.velocity = -2,-8
 Fall = 0
@@ -1141,13 +1434,6 @@ pausemovetime = 0
 ignorehitpause = 1
 size.xscale = 0.12
 size.yscale = 0.12
-
-[State 200, End]
-type = ChangeState
-Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "a"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 230
 
 [State 200, End]
 type = ChangeState
@@ -1229,7 +1515,8 @@ hitsound   = S1,43
 guardsound = S4,1
 ground.type = High
 ground.slidetime = 12
-ground.hittime  = 15
+ground.hittime  = 11
+guard.hittime = 4
 ground.velocity = -8
 air.velocity = -2,-8
 Fall = 0
@@ -1253,13 +1540,6 @@ pausemovetime = 0
 ignorehitpause = 1
 size.xscale = 0.12
 size.yscale = 0.12
-
-[State 200, End]
-type = ChangeState
-Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "a"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 230
 
 [State 200, End]
 type = ChangeState
@@ -1342,11 +1622,18 @@ guardsound = S4,1
 ground.type = High
 ground.slidetime = 12
 ground.hittime  = 15
+guard.hittime = 4
 ground.velocity = -8, -8
 air.velocity = -8,-8
 Fall = 0
 Envshake.time = 15
-p2stateno = 454
+
+
+[State 0, TargetState]
+type = TargetState
+triggerall = enemy,stateno != [454,456]
+trigger1 = movehit = 1
+value = 454
 
 [State 0, Helper]
 type = Helper
@@ -1440,6 +1727,7 @@ ground.slidetime = 35
 ground.hittime  = 35
 ground.velocity = -1, -8
 air.velocity = -1,-8
+fall.recover = 0
 Fall = 1
 Envshake.time = 15
 
@@ -1482,6 +1770,7 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 50
 ctrl = 1
+
 ;===============================================================================
 ; C - Raygun Charge:
 ;-------------------------------------------------------------------------------
@@ -3062,7 +3351,7 @@ type    = A
 movetype= H
 physics = N
 juggle  = 1
-velset = -15
+velset = -15, 0
 ctrl = 0
 sprpriority = 1
 Facep2 = 1
@@ -5107,67 +5396,67 @@ size.xscale = .25*Helper(999999),Fvar(16)
 size.yscale = .25*Helper(999999),Fvar(16)
 
 [State 0,Helper]
-type=Helper
-trigger1=MoveHit=1
-helpertype=normal
-ID=371
-name="801"
-stateno=803
-pos=35,-5
-postype=P1
-facing=Cond(Random<500,1,-1)
-ownpal=1
-size.xscale=0.075*1.5
-size.yscale=0.075*1.5
-ignorehitpause=1
-PERSISTENT=0
+type = Helper
+trigger1 = movehit = 1
+helpertype = normal
+ID = 371
+name = "Ray-Hitspark"
+stateno = 803
+pos = 35,-5
+postype = P1
+facing = Cond(Random<500,1,-1)
+ownpal = 1
+size.xscale = 0.075*1.5
+size.yscale = 0.075*1.5
+ignorehitpause = 1
+persistent = 0
 
 [State 0,Helper]
-type=Helper
-trigger1=MoveContact=1
-helpertype=normal
-ID=371
-name="245"
-stateno=804
-pos=35,-5
-postype=P1
-facing=Cond(Random<500,1,-1)
-ownpal=1
-size.xscale=.25+VAR(10)/500
-size.yscale=.25+VAR(10)/500
-ignorehitpause=1
-PERSISTENT=0
+type = Helper
+trigger1 = movecontact = 1
+helpertype = normal
+ID = 371
+name = "Ray-Hitspark"
+stateno = 804
+pos = 35,-5
+postype = P1
+facing = Cond(Random<500,1,-1)
+ownpal = 1
+size.xscale = .25+var(10)/500
+size.yscale = .25+var(10)/500
+ignorehitpause = 1
+persistent = 0
 
 [State 0,Helper]
-type=Helper
-trigger1=MoveContact=1
-helpertype=normal
-ID=073
-name="245"
-stateno=803
-pos=35,-5
-postype=P1
-facing=Cond(Random<500,1,-1)
-ownpal=1
-size.xscale=.125+VAR(10)/500
-size.yscale=.125+VAR(10)/500
-ignorehitpause=1
-PERSISTENT=0
+type = Helper
+trigger1 = movecontact = 1
+helpertype = normal
+ID = 073
+name = "Ray-Hitspark"
+stateno = 803
+pos = 35,-5
+postype = P1
+facing = Cond(Random<500,1,-1)
+ownpal = 1
+size.xscale = .125+var(10)/500
+size.yscale = .125+var(10)/500
+ignorehitpause = 1
+persistent = 0
 
 [State 0,Helper]
-type=Helper
-trigger1=AnimElem=3
-helpertype=normal
-name="Reikodan - FX"
-ID=241
-stateno=6135
+type = Helper
+trigger1 = animelem = 3
+helpertype = normal
+name = "Reikodan - FX"
+ID = 241
+stateno = 6135
 pos = 30,-5
-Size.XScale=.2
-Size.YScale=.2
-postype=p1
-facing=1
-ownpal=1
-Persistent=0
+Size.XScale = .2
+Size.YScale = .2
+postype = p1
+facing = 1
+ownpal = 1
+Persistent = 0
 
 [State 200, End]
 type = ChangeState
