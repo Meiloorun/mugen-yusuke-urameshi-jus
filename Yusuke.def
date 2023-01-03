@@ -1,10 +1,23 @@
+;Yusuke Urameshi by Meiloorun
+
+;[Repository]
+;https://github.com/Meiloorun/mugen-yusuke-urameshi-jus
+
+;[Resources]
+;Sprites: AAgus - https://www.deviantart.com/aagus/art/Yusuke-Dark-Tournament-JUS-809183308
+;Rivelio - shoutout, please go buy his chars: https://www.youtube.com/@RivelioMugen
+;Akashi MUGEN
+;Mythos
+;Mikel8888
+;InSeph
+
 [Info]
-name ="Yusuke"
-displayname ="Yusuke Urameshi"
-versiondate =13/02/2022
-mugenversion =1.0
-author ="Meiloorun" 
-pal.defaults =1
+name = "Yusuke"
+displayname = "Yusuke Urameshi"
+versiondate = 03/01/2023
+mugenversion = 1.0
+author = "Meiloorun" 
+pal.defaults = 1
 
 [Files]
 cmd=Yusuke.cmd
