@@ -259,9 +259,10 @@ triggerall = !movecontact
 trigger1 = 1
 attr = S, NA
 animtype  = Light
-damage    = 10
+damage    = 10, 2
 guardflag = MA
-pausetime = 10,8
+pausetime = 15,10
+guard.pausetime = 10,3
 sparkno = -1
 guard.sparkno = -1
 sparkxy = -8,-25
@@ -271,11 +272,11 @@ ground.type = High
 ground.slidetime = 8
 ground.hittime  = 10
 guard.hittime = 3
-ground.velocity = -7
+ground.velocity = -2
 guard.velocity = -2
 air.velocity = -2,-1
 envshake.time = 10
-envshake.ampl = -4
+envshake.ampl = -8
 Fall = 0
 
 [State 0, Wind FX]
@@ -362,12 +363,12 @@ sprpriority = 2
 [State 0, VelSet]
 type = VelSet
 trigger1 = time = 0
-x = -1
+x = -5
 
 [State 0, VelSet]
 type = VelSet
-trigger1 = time = 5
-x = 13
+trigger1 = animelem = 2
+x = 7
 
 [State 0, PlaySnd]
 type = PlaySnd
@@ -392,9 +393,10 @@ triggerall = !movecontact
 trigger1 = 1
 attr = S, NA
 animtype  = Light
-damage    = 10
+damage    = 12, 2
 guardflag = MA
-pausetime = 10,10
+pausetime = 15,10
+guard.pausetime = 10, 4
 sparkno = -1
 guard.sparkno = -1
 sparkxy = -8,-25
@@ -5151,9 +5153,9 @@ volume = 999
 
 [State 0, VelSet]
 type = VelSet
-trigger1 = time = 0
-x = 3
-y = -4
+trigger1 = movecontact = 1
+x = 1.5
+y = -1.5
 
 [State 0, VelSet]
 type = VelSet
