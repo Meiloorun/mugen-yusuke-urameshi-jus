@@ -227,7 +227,7 @@ physics = S
 juggle  = 2
 ctrl = 0
 anim = 200
-poweradd = 150
+poweradd = 50
 velset = 0,0
 sprpriority = 2
 
@@ -271,7 +271,7 @@ guardsound = S4,1
 ground.type = High
 ground.slidetime = 8
 ground.hittime  = 10
-guard.hittime = 3
+guard.hittime = 8
 ground.velocity = -2
 guard.velocity = -2
 air.velocity = -2,-1
@@ -356,7 +356,7 @@ physics = S
 juggle  = 2
 ctrl = 0
 anim = 210
-poweradd = 150
+poweradd = 50
 velset = 0,0
 sprpriority = 2
 
@@ -405,7 +405,7 @@ guardsound = S4,1
 ground.type = High
 ground.slidetime = 7
 ground.hittime  = 10
-guard.hittime = 4
+guard.hittime = 8
 ground.velocity = -6
 air.velocity = -2,-1
 envshake.time = 10
@@ -431,7 +431,110 @@ ignorehitpause = 1
 size.xscale = 0.12
 size.yscale = 0.12
 
+[State 200, End]
+type = ChangeState
+Triggerall = movecontact
+trigger1 = ailevel = 0 && command = "a"
+trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
+value = 211
 
+[State 200, End]
+type = ChangeState
+triggerall = power >= 200
+Triggerall = movecontact
+trigger1 = ailevel = 0 && command = "c"
+trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
+value = 400
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;-------------------------------------------------------------------------------
+; A - 3
+[Statedef 211]
+type    = S
+movetype= A
+physics = S
+juggle  = 2
+ctrl = 0
+anim = 211
+poweradd = 50
+velset = 0,0
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -5
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = animelem = 2
+x = 7
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,8
+volume = 999
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,8
+volume = 999
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S1,48
+volume = 50
+
+[State 200, 1]
+type = HitDef
+triggerall = !movecontact
+trigger1 = 1
+attr = S, NA
+animtype  = Light
+damage    = 12, 2
+guardflag = MA
+pausetime = 15,10
+guard.pausetime = 10, 4
+sparkno = -1
+guard.sparkno = -1
+sparkxy = -8,-25
+hitsound   = S1,32
+guardsound = S4,1
+ground.type = High
+ground.slidetime = 7
+ground.hittime  = 10
+guard.hittime = 8
+ground.velocity = -2,-8
+air.velocity = -2,-1
+envshake.time = 10
+envshake.freq = 8
+Fall = 1
+
+[State 0, Helper]
+type = Helper
+triggerall = Numhelper(801) = 0
+trigger1 = Movehit = 1
+helpertype = normal ;player
+name = "Hitspark"
+ID = 801
+stateno = 801
+pos = 0,-30
+postype = p2    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+supermovetime = 999
+pausemovetime = 0
+ignorehitpause = 1
+size.xscale = 0.12
+size.yscale = 0.12
 
 [State 200, End]
 type = ChangeState
@@ -455,7 +558,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 ;-------------------------------------------------------------------------------
-; Eat These!
+; Machine Gun Punch!
 [Statedef 220]
 type    = S
 movetype= A
@@ -504,7 +607,7 @@ type = HitDef
 trigger1 = animelem = 4||animelem = 5||animelem = 6||animelem = 7||animelem = 8||animelem = 9||animelem = 10||animelem = 11
 attr = S, NA
 animtype  = Light
-damage    = 15
+damage    = 8
 guardflag = MA
 pausetime = 6,5
 sparkno = -1
@@ -515,7 +618,7 @@ guardsound = S4,1
 ground.type = High
 ground.slidetime = 12
 ground.hittime  = 23
-guard.hittime = 1
+guard.hittime = 8
 ground.velocity = -1,0
 air.velocity = -1,-1
 envshake.time = 10
@@ -542,25 +645,24 @@ removeongethit = 1
 
 [State 0, Shadow FX]
 type = Explod
-triggerall = time < 29 && time > 14
-Trigger1 = TimeMod = 5,0
+Triggerall = Time < 24
+Trigger1 = TimeMod = 3,0
 anim = 580
 ID = 580
-pos = 27,-27
+pos = (-5-Random%20),(-15-Random%20)
 postype = p1
 facing = 1
 vfacing = 1
 bindtime = -1
 removetime = -2
-scale = .1,.75
+scale = .3,.15
 sprpriority = 2
-ontop = 1
+ontop = Cond(Random<500,1,0)
 ownpal = 1
 removeongethit = 1
 ignorehitpause = 1
-Vel = 0,0
+Vel = -1,0
 angle = 90
-
 
 [State 0, Helper]
 type = Helper
@@ -669,7 +771,7 @@ x = -1
 [State 0, VelSet]
 type = VelSet
 trigger1 = time = 3
-x = 5
+x = 9
 
 [State 0, PlaySnd]
 type = PlaySnd
@@ -1680,19 +1782,9 @@ juggle  = 2
 ctrl = 0
 anim = 360
 poweradd = 150
-velset = 8,0
+velset = 2,0
 sprpriority = 2
 
-[State 0, VelSet]
-type = VelSet
-trigger1 = animelem = 3
-y = -1
-
-[State 0, StateTypeSet]
-type = StateTypeSet
-trigger1 = animelem = 5
-statetype = A       ;S,A,C,L
-physics = A         ;A,C,S,N
 
 [State 0, PlaySnd]
 type = PlaySnd
@@ -1722,16 +1814,18 @@ pausetime = 10,10
 sparkno = -1
 guard.sparkno = -1
 sparkxy = -8,-25
-hitsound   = S1,44
+hitsound   = S1,45
 guardsound = S4,1
 ground.type = High
 ground.slidetime = 35
 ground.hittime  = 35
 ground.velocity = -1, -8
+guard.hittime = 6
 air.velocity = -1,-8
 fall.recover = 0
 Fall = 1
 Envshake.time = 15
+Envshake.ampl = 8
 
 [State 0, Helper]
 type = Helper
@@ -1761,16 +1855,8 @@ value = 40
 
 [State 200, End]
 type = ChangeState
-triggerall = power >= 200
-Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "c"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 400
-
-[State 200, End]
-type = ChangeState
 trigger1 = AnimTime = 0
-value = 50
+value = 0
 ctrl = 1
 
 ;===============================================================================
@@ -5168,7 +5254,7 @@ trigger1 = animelem = 2||animelem = 3||animelem = 4||animelem = 5||animelem = 6|
 attr = A, NA
 animtype  = Light
 damage    = 10
-guardflag = MA
+guardflag = HA
 pausetime = 6,5
 sparkno = -1
 guard.sparkno = -1
@@ -5295,7 +5381,7 @@ trigger1 = 1
 attr = A, NA
 animtype  = Light
 damage    = 10
-guardflag = MA
+guardflag = HA
 pausetime = 10,10
 sparkno = -1
 guard.sparkno = -1

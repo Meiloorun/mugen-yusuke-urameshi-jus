@@ -86,9 +86,9 @@ time = 30
 ;-| Defaults |-----------------------------------------------------------
 
 [Command]
-name = "Eat These!"
-command = ~F, B, a
-time = 15
+name = "Machine Gun Punch"
+command = $B, a
+time = 5
 
 [Command]
 name = "Get Lost"
@@ -695,11 +695,11 @@ trigger2 = movecontact
 ;--------------------------------Basic Attacks---------------------------
 ;---------------------------------------------------------------------------
 ;---------------------------------------------------------------------------
-; Eat These!
-[State -1, Eat These!]
+; Machine Gun Punch!
+[State -1, Machine Gun Punch!]
 type = ChangeState
 value = 220
-triggerall = command = "Eat These!"
+triggerall = command = "Machine Gun Punch"
 Triggerall = statetype != A
 trigger1 = ctrl
 ;-----------------------------------------------------------------------------
