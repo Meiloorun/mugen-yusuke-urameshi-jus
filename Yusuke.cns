@@ -497,8 +497,8 @@ type = HitDef
 triggerall = !movecontact
 trigger1 = 1
 attr = S, NA
-animtype  = Light
-damage    = 12, 2
+animtype  = diagup
+damage    = 15, 2
 guardflag = MA
 pausetime = 15,10
 guard.pausetime = 10, 4
@@ -508,11 +508,11 @@ sparkxy = -8,-25
 hitsound   = S1,32
 guardsound = S4,1
 ground.type = High
-ground.slidetime = 7
-ground.hittime  = 10
-guard.hittime = 8
+ground.slidetime = 35
+ground.hittime  = 35
+guard.hittime = 10
 ground.velocity = -2,-8
-air.velocity = -2,-1
+air.velocity = -2,-8
 envshake.time = 10
 envshake.freq = 8
 Fall = 1
@@ -538,11 +538,10 @@ size.yscale = 0.12
 
 [State 200, End]
 type = ChangeState
-Triggerall = movecontact
-trigger1 = ailevel = 0 && command != "holddown"
-trigger1 = ailevel = 0 && command = "b"
+Triggerall = MoveHit
+trigger1 = ailevel = 0 && command = "holdup"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 310
+value = 40
 
 [State 200, End]
 type = ChangeState
@@ -1248,7 +1247,6 @@ size.yscale = 0.12
 [State 200, End]
 type = ChangeState
 Triggerall = movecontact
-trigger1 = ailevel = 0 && command != "holddown"
 trigger1 = ailevel = 0 && command = "b"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 310
@@ -1343,7 +1341,6 @@ size.yscale = 0.12
 [State 200, End]
 type = ChangeState
 Triggerall = movecontact
-trigger1 = ailevel = 0 && command != "holddown"
 trigger1 = ailevel = 0 && command = "b"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 320
@@ -1436,18 +1433,9 @@ size.yscale = 0.12
 [State 200, End]
 type = ChangeState
 Triggerall = movecontact
-trigger1 = ailevel = 0 && command != "holddown"
 trigger1 = ailevel = 0 && command = "b"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 330
-
-[State 200, End]
-type = ChangeState
-Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "holddown"
-trigger1 = ailevel = 0 && command = "b"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 360
 
 [State 200, End]
 type = ChangeState
@@ -1648,18 +1636,9 @@ size.yscale = 0.12
 [State 200, End]
 type = ChangeState
 Triggerall = movecontact
-trigger1 = ailevel = 0 && command != "holddown"
 trigger1 = ailevel = 0 && command = "b"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 350
-
-[State 200, End]
-type = ChangeState
-Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "holddown"
-trigger1 = ailevel = 0 && command = "b"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 360
 
 [State 200, End]
 type = ChangeState
