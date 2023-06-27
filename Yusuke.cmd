@@ -737,19 +737,19 @@ Triggerall = statetype != A
 trigger1 = ctrl
 ;---------------------------------------------------------------------------
 ; A
-[State -1, A]
+[State -1, B]
 type = ChangeState
 value = 200+var(11)
-triggerall = command = "a"
+triggerall = command != "holddown"
+triggerall = command = "b"
 Triggerall = statetype != A
 trigger1 = ctrl
 ;---------------------------------------------------------------------------
 ; B
-[State -1, B]
+[State -1, A]
 type = ChangeState
 value = 300+var(11)
-triggerall = command != "holddown"
-triggerall = command = "b"
+triggerall = command = "a"
 Triggerall = statetype != A
 trigger1 = ctrl
 ;---------------------------------------------------------------------------

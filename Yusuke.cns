@@ -217,9 +217,9 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ;===============================================================================
-; A:
+; B:
 ;-------------------------------------------------------------------------------
-; A - 1
+; B - 1
 [Statedef 200]
 type    = S
 movetype= A
@@ -321,18 +321,9 @@ persistent = 0
 [State 200, End]
 type = ChangeState
 Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "a"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 210
-
-
-[State 200, End]
-type = ChangeState
-Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "holddown"
 trigger1 = ailevel = 0 && command = "b"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 360
+value = 210
 
 [State 200, End]
 type = ChangeState
@@ -348,7 +339,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 ;-------------------------------------------------------------------------------
-; A - 2
+; B - 2
 [Statedef 210]
 type    = S
 movetype= A
@@ -434,7 +425,7 @@ size.yscale = 0.12
 [State 200, End]
 type = ChangeState
 Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "a"
+trigger1 = ailevel = 0 && command = "b"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 211
 
@@ -453,7 +444,7 @@ value = 0
 ctrl = 1
 
 ;-------------------------------------------------------------------------------
-; A - 3
+; B - 3
 [Statedef 211]
 type    = S
 movetype= A
@@ -1167,7 +1158,7 @@ type=Destroyself
 trigger1=animtime = 0
 
 ;===============================================================================
-; B:
+; A:
 ;-------------------------------------------------------------------------------
 [Statedef 300]
 type    = S
@@ -1247,7 +1238,7 @@ size.yscale = 0.12
 [State 200, End]
 type = ChangeState
 Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "b"
+trigger1 = ailevel = 0 && command = "a"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 310
 
@@ -1266,7 +1257,7 @@ value = 0
 ctrl = 1
 
 ;===============================================================================
-; B - 2
+; A - 2
 ;-------------------------------------------------------------------------------
 [Statedef 310]
 type    = S
@@ -1341,7 +1332,7 @@ size.yscale = 0.12
 [State 200, End]
 type = ChangeState
 Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "b"
+trigger1 = ailevel = 0 && command = "a"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 320
 
@@ -1359,7 +1350,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 ;===============================================================================
-; B - 3
+; A - 3
 ;-------------------------------------------------------------------------------
 [Statedef 320]
 type    = S
@@ -1433,7 +1424,7 @@ size.yscale = 0.12
 [State 200, End]
 type = ChangeState
 Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "b"
+trigger1 = ailevel = 0 && command = "a"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 330
 
@@ -1451,7 +1442,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 ;===============================================================================
-; B - 4
+; A - 4
 ;-------------------------------------------------------------------------------
 [Statedef 330]
 type    = S
@@ -1530,18 +1521,9 @@ size.yscale = 0.12
 [State 200, End]
 type = ChangeState
 Triggerall = movecontact
-trigger1 = ailevel = 0 && command != "holddown"
-trigger1 = ailevel = 0 && command = "b"
+trigger1 = ailevel = 0 && command = "a"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 340
-
-[State 200, End]
-type = ChangeState
-Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "holddown"
-trigger1 = ailevel = 0 && command = "b"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 360
 
 [State 200, End]
 type = ChangeState
@@ -1557,7 +1539,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 ;===============================================================================
-; B - 5
+; A - 5
 ;-------------------------------------------------------------------------------
 [Statedef 340]
 type    = S
@@ -1636,7 +1618,7 @@ size.yscale = 0.12
 [State 200, End]
 type = ChangeState
 Triggerall = movecontact
-trigger1 = ailevel = 0 && command = "b"
+trigger1 = ailevel = 0 && command = "a"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 350
 
@@ -1654,7 +1636,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 ;===============================================================================
-; B - 6
+; A - 6
 ;-------------------------------------------------------------------------------
 [Statedef 350]
 type    = S
@@ -1710,7 +1692,6 @@ ground.velocity = -8, -8
 air.velocity = -8,-8
 Fall = 0
 Envshake.time = 15
-
 
 [State 0, TargetState]
 type = TargetState
